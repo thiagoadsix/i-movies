@@ -1,6 +1,6 @@
-import { ListMostPopularMovies } from '../../../domain/usecases'
-import { ok, serverError } from '../../helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../protocols'
+import { ListMostPopularMovies } from '../../../../domain/usecases'
+import { ok, serverError } from '../../../helpers/http/http-helper'
+import { Controller, HttpRequest, HttpResponse } from '../../../protocols'
 
 export class ListMostPopularMoviesController implements Controller {
   constructor (

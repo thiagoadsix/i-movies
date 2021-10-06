@@ -20,6 +20,7 @@ export class MoviesImdbApi extends Api implements ListMostPopularMoviesImdb, Lis
   async listComingSoon (lang?: string): Promise<ComingSoonMovies[]> {
     const url = this.getURL({ path: 'ComingSoon', apiKey: env.imdbApiKey, lang })
     const response = await this.get(url.href)
+    console.log(response.items)
     return ListComingSoonMapper(response)
   }
 }

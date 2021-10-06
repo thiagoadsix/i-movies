@@ -1,7 +1,7 @@
-import { MostPopularMovies } from '../../../domain/models'
-import { ListMostPopularMovies } from '../../../domain/usecases'
-import { ok, serverError } from '../../helpers/http/http-helper'
-import { HttpRequest } from '../../protocols'
+import { MostPopularMovies } from '../../../../domain/models'
+import { ListMostPopularMovies } from '../../../../domain/usecases'
+import { ok, serverError } from '../../../helpers/http/http-helper'
+import { HttpRequest } from '../../../protocols'
 import { ListMostPopularMoviesController } from './list-most-popular-movies-controller'
 
 const makeFakeRequest = (): HttpRequest => ({

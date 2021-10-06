@@ -35,7 +35,7 @@ const makeFakeListComingSoonResponse = (): ComingSoonMovies[] => (
     runtimeMins: 120,
     runtimeStr: 'valid_runtime_str',
     stars: 'valid_stars',
-    starsList: [
+    starList: [
       {
         key: 'valid_key',
         value: 'valid_value'

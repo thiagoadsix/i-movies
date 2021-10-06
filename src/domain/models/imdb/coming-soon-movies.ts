@@ -32,5 +32,5 @@ export interface ComingSoonMovies {
   directors: string
   directorList: DirectorList[]
   stars: string
-  starsList: StarsList[]
+  starList: StarsList[]
 }

@@ -20,7 +20,7 @@ const responseComingSoonMovies = (): ComingSoonMovies[] => ([
       }
     ],
     stars: 'valid_stars',
-    starsList: [
+    starList: [
       {
         key: 'valid_key',
         value: 'valid_value'

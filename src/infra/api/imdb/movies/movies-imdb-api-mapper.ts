@@ -30,7 +30,7 @@ export const ListComingSoonMapper = (movies: {items: any[]}): ComingSoonMovies[]
     genres: movie.genres,
     genreList: movie.genreList,
     stars: movie.stars,
-    starsList: movie.starsList,
+    starList: movie.starList,
     releaseState: movie.releaseState,
     directors: movie.directors,
     directorList: movie.directorList,
