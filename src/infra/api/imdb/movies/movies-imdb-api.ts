@@ -1,12 +1,14 @@
 import env from '../../../../main/config/env'
 import { Api } from '../../helpers/api'
 
-import { ComingSoonMovies, MostPopularMovies } from '../../../../domain/models'
+import { ComingSoonMovies, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
 import { ListMostPopularMoviesImdb } from '../../../../data/protocols/api/imdb/list-most-popular-movies-imdb'
-import { ListComingSoonMapper, ListMostPopularMapper } from './movies-imdb-api-mapper'
 import { ListComingSoonMoviesImdb } from '../../../../data/protocols/api/imdb/list-coming-soon-movies-imdb'
+import { ListTheBestMoviesImdb } from '../../../../data/protocols/api/imdb/list-the-best-movies-imdb'
 
-export class MoviesImdbApi extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb {
+import { ListComingSoonMapper, ListMostPopularMapper, ListTheBestMoviesMapper } from './movies-imdb-api-mapper'
+
+export class MoviesImdbApi extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb, ListTheBestMoviesImdb {
   constructor () {
     super('https://imdb-api.com')
   }
@@ -22,5 +24,11 @@ export class MoviesImdbApi extends Api implements ListMostPopularMoviesImdb, Lis
     const response = await this.get(url.href)
     console.log(response.items)
     return ListComingSoonMapper(response)
+  }
+
+  async listTheBest (lang?: string): Promise<TheBestMovies[]> {
+    const url = this.getURL({ path: 'Top250Movies', apiKey: env.imdbApiKey, lang })
+    const response = await this.get(url.href)
+    return ListTheBestMoviesMapper(response)
   }
 }

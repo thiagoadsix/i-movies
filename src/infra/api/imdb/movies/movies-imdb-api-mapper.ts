@@ -1,4 +1,4 @@
-import { ComingSoonMovies, MostPopularMovies } from '../../../../domain/models'
+import { ComingSoonMovies, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
 
 export const ListMostPopularMapper = (movies: { items: any[] }): MostPopularMovies[] => {
   return movies.items.map(movie => {
@@ -38,5 +38,15 @@ export const ListComingSoonMapper = (movies: {items: any[]}): ComingSoonMovies[]
     imDbRatingCount: Number(movie.imDbRatingCount),
     contentRating: movie.contentRating,
     metacriticRating: Number(movie.metacriticRating)
+  }))
+}
+
+export const ListTheBestMoviesMapper = (movies: {items: any[]}): TheBestMovies[] => {
+  return movies.items.map(movie => ({
+    ...movie,
+    rank: Number(movie.rank),
+    year: Number(movie.year),
+    imDbRating: Number(movie.imDbRating),
+    imDbRatingCount: Number(movie.imDbRatingCount)
   }))
 }

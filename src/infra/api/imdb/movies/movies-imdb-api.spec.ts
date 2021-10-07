@@ -1,8 +1,23 @@
 import { ListComingSoonMoviesImdb } from '../../../../data/protocols/api/imdb/list-coming-soon-movies-imdb'
 import { ListMostPopularMoviesImdb } from '../../../../data/protocols/api/imdb/list-most-popular-movies-imdb'
-import { ComingSoonMovies, MostPopularMovies } from '../../../../domain/models'
+import { ListTheBestMoviesImdb } from '../../../../data/protocols/api/imdb/list-the-best-movies-imdb'
+import { ComingSoonMovies, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
 import { Api } from '../../helpers/api'
 import { MoviesImdbApi } from './movies-imdb-api'
+
+const makeFakeListTheBestResponse = (): TheBestMovies[] => (
+  [{
+    id: 'valid_id',
+    crew: 'valid_crew',
+    title: 'valid_title',
+    year: 2021,
+    fullTitle: 'valid_full_title',
+    image: 'valid_image',
+    imDbRating: 10,
+    imDbRatingCount: 100,
+    rank: 1
+  }]
+)
 
 const makeFakeListMostPopularResponse = (): MostPopularMovies[] => (
   [{
@@ -63,7 +78,11 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
-  class MoviesImdbApiStub extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb {
+  class MoviesImdbApiStub extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb, ListTheBestMoviesImdb {
+    async listTheBest (lang?: string): Promise<TheBestMovies[]> {
+      return await new Promise(resolve => resolve(makeFakeListTheBestResponse()))
+    }
+
     async listComingSoon (lang?: string): Promise<ComingSoonMovies[]> {
       return await new Promise(resolve => resolve(makeFakeListComingSoonResponse()))
     }
@@ -86,7 +105,7 @@ describe('MoviesImdbApi', () => {
     expect(spyListMostPopular).toBeCalledWith('en')
   })
 
-  test('should return a list of MostPopularMovies', async () => {
+  test('should return a list of MostPopularMovies with en lang', async () => {
     const { sut } = makeSut()
     const response = await sut.listMostPopular('en')
     expect(response.length).toBeGreaterThanOrEqual(1)
@@ -98,10 +117,23 @@ describe('MoviesImdbApi', () => {
     expect(response.length).toBeGreaterThanOrEqual(1)
   })
 
-  test('should calls ComingSoonMovies with en lang', async () => {
+  test('should calls ComingSoonMovies with pt lang', async () => {
     const { sut } = makeSut()
     const spyListComingSoon = jest.spyOn(sut, 'listComingSoon')
     await sut.listComingSoon('pt')
     expect(spyListComingSoon).toBeCalledWith('pt')
+  })
+
+  test('should return a list of TheBestMovies', async () => {
+    const { sut } = makeSut()
+    const response = await sut.listTheBest('en')
+    expect(response.length).toBeGreaterThanOrEqual(1)
+  })
+
+  test('should calls TheBestMovies with pt lang', async () => {
+    const { sut } = makeSut()
+    const spyListTheBest = jest.spyOn(sut, 'listTheBest')
+    await sut.listTheBest('pt')
+    expect(spyListTheBest).toBeCalledWith('pt')
   })
 })
