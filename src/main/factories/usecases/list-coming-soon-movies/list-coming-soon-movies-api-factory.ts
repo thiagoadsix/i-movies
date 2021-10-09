@@ -1,6 +1,6 @@
 import { MoviesImdbApi } from '../../../../infra/api/imdb/movies/movies-imdb-api'
 import { ListComingSoonMovies } from '../../../../domain/usecases'
-import { ListComingSoonMoviesApi } from '../../../../data/usecases/api/list-coming-soon-movies/list-coming-soon-movies-api'
+import { ListComingSoonMoviesApi } from '../../../../data/usecases/api/imdb/movies/list-coming-soon-movies/list-coming-soon-movies-api'
 
 export const makeListComingSoonMoviesApiFactory = (): ListComingSoonMovies => {
   const imdb = new MoviesImdbApi()

@@ -1,5 +1,5 @@
-import { TheBestMovies } from '../../../../domain/models'
-import { ListTheBestMoviesImdb } from '../../../protocols/api/imdb/movies/list-the-best-movies-imdb'
+import { TheBestMovies } from '../../../../../../domain/models'
+import { ListTheBestMoviesImdb } from '../../../../../protocols/api/imdb/movies/list-the-best-movies-imdb'
 import { ListTheBestMoviesApi } from './list-the-best-movies-api'
 
 const responeTheBestMovies = (): TheBestMovies[] => ([{

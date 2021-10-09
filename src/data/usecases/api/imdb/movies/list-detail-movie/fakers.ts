@@ -1,4 +1,4 @@
-import { DetailMovie } from '../../../../domain/models'
+import { DetailMovie } from '../../../../../../domain/models'
 
 export const makeFakeResponse = (): DetailMovie => ({
   id: 'valid_id',

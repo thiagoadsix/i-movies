@@ -1,5 +1,5 @@
-import { ComingSoonMovies } from '../../../../domain/models'
-import { ListComingSoonMoviesImdb } from '../../../protocols/api/imdb/movies/list-coming-soon-movies-imdb'
+import { ComingSoonMovies } from '../../../../../../domain/models'
+import { ListComingSoonMoviesImdb } from '../../../../../protocols/api/imdb/movies/list-coming-soon-movies-imdb'
 import { ListComingSoonMoviesApi } from './list-coming-soon-movies-api'
 
 const responseComingSoonMovies = (): ComingSoonMovies[] => ([
