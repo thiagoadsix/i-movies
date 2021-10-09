@@ -1,5 +1,5 @@
-import { MostPopularMovies } from '../../../domain/models'
-import { ListMostPopularMoviesImdb } from '../../protocols/api/imdb/movies/list-most-popular-movies-imdb'
+import { MostPopularMovies } from '../../../../domain/models'
+import { ListMostPopularMoviesImdb } from '../../../protocols/api/imdb/movies/list-most-popular-movies-imdb'
 import { ListMostPopularMoviesApi } from './list-most-popular-movies-api'
 
 const responeMostPopuparMovies = (): MostPopularMovies[] => ([{

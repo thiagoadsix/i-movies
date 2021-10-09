@@ -1,6 +1,6 @@
-import { TheBestMovies } from '../../../domain/models'
-import { ListTheBestMovies } from '../../../domain/usecases'
-import { ListTheBestMoviesImdb } from '../../protocols/api/imdb/movies/list-the-best-movies-imdb'
+import { TheBestMovies } from '../../../../domain/models'
+import { ListTheBestMovies } from '../../../../domain/usecases'
+import { ListTheBestMoviesImdb } from '../../../protocols/api/imdb/movies/list-the-best-movies-imdb'
 
 export class ListTheBestMoviesApi implements ListTheBestMovies {
   constructor (private readonly listTheBestMoviesImdb: ListTheBestMoviesImdb) {}
