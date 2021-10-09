@@ -1,84 +1,25 @@
+import { Options } from '../../../../domain/interfaces'
+import { ComingSoonMovies, DetailMovie, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
 import { ListComingSoonMoviesImdb } from '../../../../data/protocols/api/imdb/list-coming-soon-movies-imdb'
+import { ListDetailMovieImdb } from '../../../../data/protocols/api/imdb/list-detail-movie-imdb'
 import { ListMostPopularMoviesImdb } from '../../../../data/protocols/api/imdb/list-most-popular-movies-imdb'
 import { ListTheBestMoviesImdb } from '../../../../data/protocols/api/imdb/list-the-best-movies-imdb'
-import { ComingSoonMovies, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
+
 import { Api } from '../../helpers/api'
+
+import { makeFakeListComingSoonResponse, makeFakeListMostPopularResponse, makeFakeListTheBestResponse, makeFakeListDetailResponse } from './fakers'
 import { MoviesImdbApi } from './movies-imdb-api'
-
-const makeFakeListTheBestResponse = (): TheBestMovies[] => (
-  [{
-    id: 'valid_id',
-    crew: 'valid_crew',
-    title: 'valid_title',
-    year: 2021,
-    fullTitle: 'valid_full_title',
-    image: 'valid_image',
-    imDbRating: 10,
-    imDbRatingCount: 100,
-    rank: 1
-  }]
-)
-
-const makeFakeListMostPopularResponse = (): MostPopularMovies[] => (
-  [{
-    id: 'valid_id',
-    crew: 'valid_crew',
-    title: 'valid_title',
-    year: 2021,
-    fullTitle: 'valid_full_title',
-    image: 'valid_image',
-    rankUpDown: 'valid_rank_up_down',
-    imDbRating: 10,
-    imDbRatingCount: 100,
-    rank: 1
-  }]
-)
-
-const makeFakeListComingSoonResponse = (): ComingSoonMovies[] => (
-  [{
-    id: 'valid_id',
-    title: 'valid_title',
-    year: 2021,
-    fullTitle: 'valid_full_title',
-    image: 'valid_image',
-    imDbRating: 10,
-    imDbRatingCount: 100,
-    plot: 'valid_plot',
-    metacriticRating: 50,
-    contentRating: 'valid_content_rating',
-    releaseState: 'valid_release_state',
-    runtimeMins: 120,
-    runtimeStr: 'valid_runtime_str',
-    stars: 'valid_stars',
-    starList: [
-      {
-        key: 'valid_key',
-        value: 'valid_value'
-      }
-    ],
-    directors: 'valid_directors',
-    directorList: [
-      {
-        key: 'valid_key',
-        value: 'valid_value'
-      }
-    ],
-    genres: 'valid_genres',
-    genreList: [
-      {
-        key: 'valid_key',
-        value: 'valid_value'
-      }
-    ]
-  }]
-)
 
 interface SutTypes {
   sut: MoviesImdbApi
 }
 
 const makeSut = (): SutTypes => {
-  class MoviesImdbApiStub extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb, ListTheBestMoviesImdb {
+  class MoviesImdbApiStub extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb, ListTheBestMoviesImdb, ListDetailMovieImdb {
+    async listDetail (options?: Options): Promise<DetailMovie> {
+      return await new Promise(resolve => resolve(makeFakeListDetailResponse()))
+    }
+
     async listTheBest (lang?: string): Promise<TheBestMovies[]> {
       return await new Promise(resolve => resolve(makeFakeListTheBestResponse()))
     }
@@ -135,5 +76,18 @@ describe('MoviesImdbApi', () => {
     const spyListTheBest = jest.spyOn(sut, 'listTheBest')
     await sut.listTheBest('pt')
     expect(spyListTheBest).toBeCalledWith('pt')
+  })
+
+  test('should return a object of DetailMovie', async () => {
+    const { sut } = makeSut()
+    const response = await sut.listDetail({ lang: 'en' })
+    expect(response).toHaveProperty('id', 'valid_id')
+  })
+
+  test('should calls DetailMovie with es lang', async () => {
+    const { sut } = makeSut()
+    const spyListTheBest = jest.spyOn(sut, 'listDetail')
+    await sut.listDetail({ lang: 'en' })
+    expect(spyListTheBest).toBeCalledWith({ lang: 'en' })
   })
 })

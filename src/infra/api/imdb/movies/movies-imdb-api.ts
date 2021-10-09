@@ -1,16 +1,27 @@
 import env from '../../../../main/config/env'
-import { Api } from '../../helpers/api'
 
-import { ComingSoonMovies, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
+import { Options } from '../../../../domain/interfaces'
+import { ComingSoonMovies, DetailMovie, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
 import { ListMostPopularMoviesImdb } from '../../../../data/protocols/api/imdb/list-most-popular-movies-imdb'
 import { ListComingSoonMoviesImdb } from '../../../../data/protocols/api/imdb/list-coming-soon-movies-imdb'
 import { ListTheBestMoviesImdb } from '../../../../data/protocols/api/imdb/list-the-best-movies-imdb'
+import { ListDetailMovieImdb } from '../../../../data/protocols/api/imdb/list-detail-movie-imdb'
 
-import { ListComingSoonMapper, ListMostPopularMapper, ListTheBestMoviesMapper } from './movies-imdb-api-mapper'
+import { Api } from '../../helpers/api'
 
-export class MoviesImdbApi extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb, ListTheBestMoviesImdb {
+import { ListComingSoonMapper, ListDetailMovieMapper, ListMostPopularMapper, ListTheBestMoviesMapper } from './movies-imdb-api-mapper'
+
+export class MoviesImdbApi extends Api implements ListMostPopularMoviesImdb, ListComingSoonMoviesImdb, ListTheBestMoviesImdb, ListDetailMovieImdb {
   constructor () {
     super('https://imdb-api.com')
+  }
+
+  async listDetail (options?: Options): Promise<DetailMovie> {
+    const { lang, movieId } = options
+    const url = this.getURL({ path: 'Title', lang, apiKey: env.imdbApiKey })
+    const urlConcatenedWithParams = url.toString().concat(`/${movieId}/Posters&Trailer&Images&FullActor`)
+    const response = await this.get(urlConcatenedWithParams)
+    return ListDetailMovieMapper(response)
   }
 
   async listMostPopular (lang?: string): Promise<MostPopularMovies[]> {

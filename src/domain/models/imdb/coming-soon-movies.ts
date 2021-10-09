@@ -4,13 +4,13 @@ interface GenreList {
 }
 
 interface DirectorList {
-  key: string
-  value: string
+  id: string
+  name: string
 }
 
 interface StarsList {
-  key: string
-  value: string
+  id: string
+  name: string
 }
 
 export interface ComingSoonMovies {

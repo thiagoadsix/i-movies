@@ -15,15 +15,15 @@ const responseComingSoonMovies = (): ComingSoonMovies[] => ([
     directors: 'valid_directors',
     directorList: [
       {
-        key: 'valid_key',
-        value: 'valid_value'
+        id: 'valid_id',
+        name: 'valid_name'
       }
     ],
     stars: 'valid_stars',
     starList: [
       {
-        key: 'valid_key',
-        value: 'valid_value'
+        id: 'valid_id',
+        name: 'valid_name'
       }
     ],
     genres: 'valid_genres',
