@@ -1,29 +1,8 @@
 import { MostPopularMovies } from '../../../../domain/models'
 import { ListMostPopularMovies } from '../../../../domain/usecases'
 import { ok, serverError } from '../../../helpers/http/http-helper'
-import { HttpRequest } from '../../../protocols'
+import { makeFakeRequest, makeFakeResponse } from './faker'
 import { ListMostPopularMoviesController } from './list-most-popular-movies-controller'
-
-const makeFakeRequest = (): HttpRequest => ({
-  body: {
-    lang: 'pt'
-  }
-})
-
-const makeFakeResponse = (): MostPopularMovies[] => (
-  [{
-    id: 'valid_id',
-    crew: 'valid_crew',
-    title: 'valid_title',
-    year: 2021,
-    fullTitle: 'valid_full_title',
-    image: 'valid_image',
-    rankUpDown: 'valid_rank_up_down',
-    imDbRating: 10,
-    imDbRatingCount: 100,
-    rank: 1
-  }]
-)
 
 const makeListMostPopularMovies = (): ListMostPopularMovies => {
   class ListMostPopularMoviesStub implements ListMostPopularMovies {
