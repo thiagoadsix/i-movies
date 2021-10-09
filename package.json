@@ -8,7 +8,8 @@
     "commit": "git-cz",
     "dev": "sucrase-node src/main/server.ts",
     "build": "rimraf build && tsc",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:clear": "jest --clearCache"
   },
   "repository": {
     "type": "git",

@@ -1,30 +1,10 @@
 import { ListTheBestMovies } from '../../../../domain/usecases'
 import { TheBestMovies } from '../../../../domain/models'
 
-import { HttpRequest } from '../../../protocols'
 import { ok, serverError } from '../../../helpers/http/http-helper'
 
 import { ListTheBestMoviesController } from './list-the-best-movies-controller'
-
-const makeFakeRequest = (): HttpRequest => ({
-  body: {
-    lang: 'pt'
-  }
-})
-
-const makeFakeResponse = (): TheBestMovies[] => ([
-  {
-    id: 'valid_id',
-    title: 'valid_title',
-    fullTitle: 'valid_full_title',
-    crew: 'valid_crew',
-    image: 'valid_image',
-    imDbRating: 10,
-    imDbRatingCount: 100,
-    rank: 9.5,
-    year: 2000
-  }
-])
+import { makeFakeRequest, makeFakeResponse } from './faker'
 
 const makeListTheBestMoviesStub = (): ListTheBestMovies => {
   class ListTheBestMoviesStub implements ListTheBestMovies {

@@ -1,6 +1,6 @@
-import { ListMostPopularMoviesApi } from '../../../../data/usecases/list-most-popular-movies/list-most-popular-movies-api'
 import { MoviesImdbApi } from '../../../../infra/api/imdb/movies/movies-imdb-api'
 import { ListMostPopularMovies } from '../../../../domain/usecases'
+import { ListMostPopularMoviesApi } from '../../../../data/usecases/api/imdb/movies/list-most-popular-movies/list-most-popular-movies-api'
 
 export const makeListMostPopularMoviesApiFactory = (): ListMostPopularMovies => {
   const imdb = new MoviesImdbApi()

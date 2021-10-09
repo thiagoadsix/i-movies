@@ -1,6 +1,6 @@
-import { ComingSoonMovies } from '../../../domain/models'
-import { ListComingSoonMovies } from '../../../domain/usecases'
-import { ListComingSoonMoviesImdb } from '../../protocols/api/imdb/list-coming-soon-movies-imdb'
+import { ComingSoonMovies } from '../../../../../../domain/models'
+import { ListComingSoonMovies } from '../../../../../../domain/usecases'
+import { ListComingSoonMoviesImdb } from '../../../../../protocols/api/imdb/movies/list-coming-soon-movies-imdb'
 
 export class ListComingSoonMoviesApi implements ListComingSoonMovies {
   constructor (

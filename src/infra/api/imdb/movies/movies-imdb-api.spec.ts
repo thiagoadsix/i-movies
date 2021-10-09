@@ -1,9 +1,9 @@
 import { Options } from '../../../../domain/interfaces'
 import { ComingSoonMovies, DetailMovie, MostPopularMovies, TheBestMovies } from '../../../../domain/models'
-import { ListComingSoonMoviesImdb } from '../../../../data/protocols/api/imdb/list-coming-soon-movies-imdb'
-import { ListDetailMovieImdb } from '../../../../data/protocols/api/imdb/list-detail-movie-imdb'
-import { ListMostPopularMoviesImdb } from '../../../../data/protocols/api/imdb/list-most-popular-movies-imdb'
-import { ListTheBestMoviesImdb } from '../../../../data/protocols/api/imdb/list-the-best-movies-imdb'
+import { ListComingSoonMoviesImdb } from '../../../../data/protocols/api/imdb/movies/list-coming-soon-movies-imdb'
+import { ListDetailMovieImdb } from '../../../../data/protocols/api/imdb/movies/list-detail-movie-imdb'
+import { ListMostPopularMoviesImdb } from '../../../../data/protocols/api/imdb/movies/list-most-popular-movies-imdb'
+import { ListTheBestMoviesImdb } from '../../../../data/protocols/api/imdb/movies/list-the-best-movies-imdb'
 
 import { Api } from '../../helpers/api'
 

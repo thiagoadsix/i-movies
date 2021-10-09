@@ -1,6 +1,6 @@
-import { Options } from '../../../domain/interfaces'
-import { DetailMovie } from '../../../domain/models'
-import { ListDetailMovieImdb } from '../../protocols/api/imdb/list-detail-movie-imdb'
+import { Options } from '../../../../../../domain/interfaces'
+import { DetailMovie } from '../../../../../../domain/models'
+import { ListDetailMovieImdb } from '../../../../../protocols/api/imdb/movies/list-detail-movie-imdb'
 import { makeFakeResponse } from './fakers'
 import { ListDetailMovieApi } from './list-detail-movie-api'
 

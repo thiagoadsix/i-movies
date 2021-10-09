@@ -1,18 +1,7 @@
-import { TheBestMovies } from '../../../domain/models'
-import { ListTheBestMoviesImdb } from '../../protocols/api/imdb/list-the-best-movies-imdb'
+import { TheBestMovies } from '../../../../../../domain/models'
+import { ListTheBestMoviesImdb } from '../../../../../protocols/api/imdb/movies/list-the-best-movies-imdb'
+import { responeTheBestMovies } from './faker'
 import { ListTheBestMoviesApi } from './list-the-best-movies-api'
-
-const responeTheBestMovies = (): TheBestMovies[] => ([{
-  id: 'valid_id',
-  title: 'valid_title',
-  fullTitle: 'valid_full_title',
-  crew: 'valid_crew',
-  image: 'valid_image',
-  imDbRating: 10,
-  imDbRatingCount: 100,
-  rank: 9.5,
-  year: 2000
-}])
 
 const makeListTheBestMoviesImdb = (): ListTheBestMoviesImdb => {
   class ListTheBestMoviesImdbStub implements ListTheBestMoviesImdb {

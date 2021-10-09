@@ -1,19 +1,7 @@
-import { MostPopularMovies } from '../../../domain/models'
-import { ListMostPopularMoviesImdb } from '../../protocols/api/imdb/list-most-popular-movies-imdb'
+import { MostPopularMovies } from '../../../../../../domain/models'
+import { ListMostPopularMoviesImdb } from '../../../../../protocols/api/imdb/movies/list-most-popular-movies-imdb'
+import { responeMostPopuparMovies } from './faker'
 import { ListMostPopularMoviesApi } from './list-most-popular-movies-api'
-
-const responeMostPopuparMovies = (): MostPopularMovies[] => ([{
-  id: 'valid_id',
-  title: 'valid_title',
-  fullTitle: 'valid_full_title',
-  crew: 'valid_crew',
-  image: 'valid_image',
-  imDbRating: 10,
-  imDbRatingCount: 100,
-  rank: 9.5,
-  rankUpDown: 'valid_rank_up_down',
-  year: 2000
-}])
 
 const makeListPopularMoviesImdb = (): ListMostPopularMoviesImdb => {
   class ListMostPopularMoviesImdbStub implements ListMostPopularMoviesImdb {
