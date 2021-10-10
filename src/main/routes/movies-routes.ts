@@ -10,6 +10,6 @@ import { makeListTheBestMoviesControllerFactory } from '../factories/controllers
 export default (router: Router): void => {
   router.get('/most-popular-movies', adaptRoutes(makeListMostPopularMoviesControllerFactory()))
   router.get('/coming-soon-movies', adaptRoutes(makeListComingSoonMoviesControllerFactory()))
-  router.get('/the-best-movies', adaptRoutes(makeListTheBestMoviesControllerFactory()))
+  router.get('/best-movies', adaptRoutes(makeListTheBestMoviesControllerFactory()))
   router.get('/detail-movie/:movieId', adaptRoutes(makeListDetailMovieControllerFactory()))
 }
